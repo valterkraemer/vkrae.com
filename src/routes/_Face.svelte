@@ -30,7 +30,7 @@
     const result = distance / maxDistance;
 
     // Make it easier to fill / empty page
-    return Math.min(1, Math.max(0, (result * 1.5) - 0.2))
+    return Math.min(1, Math.max(0, result * 1.5 - 0.2));
   }
 
   function getAmount(pathDistance, item) {
@@ -51,6 +51,7 @@
 
     paths.forEach((item) => {
       let amount = getAmount(pathDistance, item);
+      item.node.style["visibility"] = amount ? "visible" : "hidden";
       item.node.style["stroke-dasharray"] = `${amount} ${item.length - amount}`;
     });
   }
