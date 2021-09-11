@@ -46,7 +46,7 @@
   }
 
   function handleMove(e) {
-    const distance = distanceFromCenter(e.clientX, e.clientY);
+    const distance = distanceFromCenter(e.pageX, e.pageY);
     const pathDistance = (1 - distance) * totalLength;
 
     paths.forEach((item) => {
