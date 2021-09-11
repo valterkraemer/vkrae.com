@@ -45,7 +45,7 @@
     return pathDistance - item.start;
   }
 
-  function handleMousemove(e) {
+  function handleMove(e) {
     const distance = distanceFromCenter(e.clientX, e.clientY);
     const pathDistance = (1 - distance) * totalLength;
 
@@ -57,7 +57,9 @@
   }
 </script>
 
-<svelte:body on:mousemove={handleMousemove} />
+<svelte:body
+  on:mousemove={handleMove}
+  on:touchmove|preventDefault={handleMove} />
 
 <svg use:initPaths viewBox="0 0 527 849" xmlns="http://www.w3.org/2000/svg">
   <path
