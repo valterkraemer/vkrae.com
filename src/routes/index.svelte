@@ -1,6 +1,17 @@
 <script>
-  const value = Math.random();
+  import Face from "./_Face.svelte";
 </script>
 
-<h1>vkrae</h1>
-<h5>{value}</h5>
+<Face />
+
+<style>
+  :global(html) {
+    height: 100%;
+  }
+
+  :global(body) {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+</style>
