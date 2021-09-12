@@ -24,7 +24,7 @@
           if (data.color) {
             document.body.style["background-color"] = data.color;
           }
-          if (data.text) {
+          if (data.text !== undefined) {
             text = data.text;
           }
         });
