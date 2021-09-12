@@ -35,6 +35,10 @@
 
 <Face />
 
+{#if connected}
+  <div id="connected-dot" />
+{/if}
+
 <style>
   :global(html) {
     height: 100%;
@@ -46,5 +50,15 @@
     width: 100%;
     margin: 0;
     overflow: hidden;
+  }
+
+  #connected-dot {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
   }
 </style>
