@@ -59,6 +59,6 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: rgba(0, 0, 0, 0.15);
   }
 </style>
