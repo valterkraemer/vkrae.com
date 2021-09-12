@@ -4,6 +4,7 @@
   import Face from "./_Face.svelte";
 
   let connected = false;
+  let text = "";
 
   onMount(async () => {
     (window as any).parcelRequire = undefined;
@@ -23,6 +24,9 @@
           if (data.color) {
             document.body.style["background-color"] = data.color;
           }
+          if (data.text) {
+            text = data.text;
+          }
         });
       });
 
@@ -32,6 +36,8 @@
     });
   });
 </script>
+
+<h1>{text}</h1>
 
 <Face />
 
@@ -50,6 +56,12 @@
     width: 100%;
     margin: 0;
     overflow: hidden;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 16px;
+    margin-top: 8%;
   }
 
   #connected-dot {
