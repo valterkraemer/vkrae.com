@@ -1,0 +1,8 @@
+---
+title: How to create a circle slice in SVG
+author: Valter Kraemer
+date: 2022-09-17
+excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio nisl, nec pretium dolor varius in.
