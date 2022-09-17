@@ -19,7 +19,7 @@
 
       conn.on("open", () => {
         connected = true;
-        conn.on("data", (data) => {
+        conn.on("data", (data: any) => {
           console.log("Received", data);
           if (data.color) {
             document.body.style["background-color"] = data.color;
@@ -36,8 +36,6 @@
     });
   });
 </script>
-
-<h1>{text}</h1>
 
 <Face />
 
