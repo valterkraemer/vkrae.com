@@ -5,6 +5,7 @@
 
   let connected = false;
   let text = "";
+  const version = __APP_VERSION__;
 
   onMount(async () => {
     (window as any).parcelRequire = undefined;
@@ -36,6 +37,8 @@
     });
   });
 </script>
+
+<p id="version">{version}</p>
 
 <Face />
 
@@ -70,5 +73,13 @@
     height: 10px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  #version {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    margin: 0;
+    font-size: 0.8rem;
   }
 </style>
