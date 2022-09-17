@@ -1,8 +1,15 @@
-<script>
-  let paths = [];
+<script lang="ts">
+  type Path = {
+    node: SVGElement;
+    start: number;
+    end: number;
+    length: number;
+  };
+
+  let paths: Path[] = [];
   let totalLength = 0;
 
-  function initPaths(node) {
+  function initPaths(node: SVGElement) {
     paths = Array.from(node.querySelectorAll("path")).map((node) => {
       const start = totalLength;
       const length = node.getTotalLength();
@@ -17,7 +24,7 @@
     });
   }
 
-  function distanceFromCenter(x, y) {
+  function distanceFromCenter(x: number, y: number) {
     const xMax = window.innerWidth / 2;
     const yMax = window.innerHeight / 2;
 
@@ -33,25 +40,26 @@
     return Math.min(1, Math.max(0, result * 1.5 - 0.2));
   }
 
-  function getAmount(pathDistance, item) {
-    if (pathDistance < item.start) {
+  function getAmount(pathDistance: number, path: Path) {
+    if (pathDistance < path.start) {
       return 0;
     }
 
-    if (pathDistance > item.end) {
-      return item.length;
+    if (pathDistance > path.end) {
+      return path.length;
     }
 
-    return pathDistance - item.start;
+    return pathDistance - path.start;
   }
 
-  function handleMove(e) {
-    const distance = distanceFromCenter(e.pageX, e.pageY);
+  function handleMove(event: MouseEvent | any) {
+    const distance = distanceFromCenter(event.pageX, event.pageY);
     const pathDistance = (1 - distance) * totalLength;
 
     paths.forEach((item) => {
       let amount = getAmount(pathDistance, item);
       item.node.style["visibility"] = amount ? "visible" : "hidden";
+      // @ts-ignore
       item.node.style["stroke-dasharray"] = `${amount} ${item.length - amount}`;
     });
   }

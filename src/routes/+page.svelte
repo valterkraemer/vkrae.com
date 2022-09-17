@@ -13,8 +13,6 @@
 
     const peer = new Peer();
 
-    const svg = document.querySelector("svg");
-
     peer.on("open", () => {
       const conn = peer.connect("color-picker-yo");
 
@@ -22,7 +20,8 @@
         connected = true;
         conn.on("data", (data: any) => {
           if (data.color) {
-            document.body.style["background-color"] = data.color;
+            // @ts-ignore
+            document.body.style["background-color"] = data.color as string;
           }
         });
       });
@@ -53,12 +52,6 @@
     width: 100%;
     margin: 0;
     overflow: hidden;
-  }
-
-  h1 {
-    text-align: center;
-    padding: 16px;
-    margin-top: 8%;
   }
 
   #connected-dot {

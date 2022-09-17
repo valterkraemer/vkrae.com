@@ -1,5 +1,3 @@
-import { error } from "@sveltejs/kit";
-
 type Metadata = {
   title: string;
   author: string;
