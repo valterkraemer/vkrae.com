@@ -4,7 +4,6 @@
   import Face from "./_Face.svelte";
 
   let connected = false;
-  let text = "";
   const version = __APP_VERSION__;
 
   onMount(async () => {
@@ -21,12 +20,8 @@
       conn.on("open", () => {
         connected = true;
         conn.on("data", (data: any) => {
-          console.log("Received", data);
           if (data.color) {
             document.body.style["background-color"] = data.color;
-          }
-          if (data.text !== undefined) {
-            text = data.text;
           }
         });
       });
