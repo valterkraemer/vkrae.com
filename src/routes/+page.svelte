@@ -5,6 +5,7 @@
 
   let connected = false;
   const version = __APP_VERSION__;
+  const hash = __SHA1_HASH__;
 
   onMount(async () => {
     (window as any).parcelRequire = undefined;
@@ -33,7 +34,7 @@
   });
 </script>
 
-<p id="version">{version}</p>
+<p id="version">{version} ({hash})</p>
 
 <Face />
 

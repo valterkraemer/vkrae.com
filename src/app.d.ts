@@ -9,3 +9,4 @@ declare namespace App {
 }
 
 declare const __APP_VERSION__: string;
+declare const __SHA1_HASH__: string;
