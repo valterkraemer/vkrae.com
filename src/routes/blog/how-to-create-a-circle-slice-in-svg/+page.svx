@@ -5,4 +5,73 @@ date: 2022-09-17
 excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum odio nisl, nec pretium dolor varius in.
+How does SVG work?
+
+<script lang="ts">
+    import Range from "./Range.svelte";
+    import DynamicCodePreview from "./DynamicCodePreview.svelte";
+    import SvgPreview from "./SvgPreview.svelte";
+    import { draggableSVGGraphics } from "$lib/draggableSVGGraphics";
+    let minX = 0;
+    let minY = 0;
+    let width = 5;
+    let height = 5;
+
+    let circleCx = 2.5;
+    let circleCy = 2.5;
+
+    function reset() {
+        minX = 0;
+        minY = 0;
+        width = 5;
+        height = 5;
+
+        circleCx = 2.5;
+        circleCy = 2.5;
+    }
+
+    function handleMove(event) {
+		const detail = event.detail;
+		circleCx = detail.cx;
+		circleCy = detail.cy;
+	}
+</script>
+
+    <button on:click={reset}>Reset</button>
+
+    <Range label="minX" bind:value={minX} min="-5" max="5" />
+    <Range label="minY" bind:value={minY} min="-5" max="5" />
+    <Range label="width" bind:value={width} min="0" max="10" />
+    <Range label="height" bind:value={height} min="0" max="10" />
+
+
+    <DynamicCodePreview replacements={[{
+        text: "0 0 5 5",
+        value: `${minX} ${minY} ${width} ${height}`
+    }, {
+        text: "2.5",
+        value: circleCx
+    }, {
+        text: "2.5",
+        value: circleCy
+    }]}>
+
+```xml
+<svg viewBox="0 0 5 5">
+    <circle cx="2.5" cy="2.5" r="2" />
+</svg>
+```
+    </DynamicCodePreview>
+
+<div class="playground">
+    <SvgPreview viewBox="{minX} {minY} {width} {height}">
+        <circle use:draggableSVGGraphics={{cx: circleCx, cy: circleCy, step: 0.25}} on:move={handleMove}  cx={circleCx} cy={circleCy} r="2" />
+    </SvgPreview>
+</div>
+
+<style>
+    .playground {
+        max-width: 500px;
+        max-height: 500px;
+    }
+</style>
